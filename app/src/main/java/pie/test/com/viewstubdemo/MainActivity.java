@@ -1,5 +1,6 @@
 package pie.test.com.viewstubdemo;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_show.setOnClickListener(this);
         btn_hide.setOnClickListener(this);
         btn_change.setOnClickListener(this);
+        findViewById(R.id.buttonPanel).setOnClickListener(this);
     }
 
     @Override
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //inflate 方法只能被调用一次，因为调用后viewStub对象就被移除了视图树；
                 // 所以，如果此时再次点击显示按钮，就会崩溃，错误信息：ViewStub must have a non-null ViewGroup viewParent；
                 // 所以使用try catch ,当此处发现exception 的时候，在catch中使用setVisibility()重新显示
+
                 try {
                     View iv_vsContent = viewStub.inflate();     //inflate 方法只能被调用一次，
                     hintText = (TextView) iv_vsContent.findViewById(R.id.tv_vsContent);
@@ -60,6 +63,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (hintText!=null) {
                     hintText.setText("网络异常，无法刷新，请检查网络");
                 }
+                break;
+
+            case R.id.buttonPanel:
+                startActivity(new Intent(MainActivity.this,ViewStubDemoActivity.class));
                 break;
         }
     }

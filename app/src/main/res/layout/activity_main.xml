@@ -24,6 +24,14 @@
             android:layout_alignParentRight="true"
             android:layout_weight="1"
             android:text="隐藏ViewStub"/>
+
+        <Button
+            android:id="@+id/buttonPanel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_weight="1"
+            android:text="跳转2"/>
     </LinearLayout>
 
 
