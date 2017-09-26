@@ -45,16 +45,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // 所以，如果此时再次点击显示按钮，就会崩溃，错误信息：ViewStub must have a non-null ViewGroup viewParent；
                 // 所以使用try catch ,当此处发现exception 的时候，在catch中使用setVisibility()重新显示
 
-                try {
-                    View iv_vsContent = viewStub.inflate();     //inflate 方法只能被调用一次，
-                    hintText = (TextView) iv_vsContent.findViewById(R.id.tv_vsContent);
-                    //hintText.setText("没有相关数据，请刷新");
-                } catch (Exception e) {
-                    Log.d("TAG","e = " + e.getMessage());
-                    viewStub.setVisibility(View.VISIBLE);
-                } finally {
-                    hintText.setText("没有相关数据，请刷新");
-                }
+//                try {
+//                    View iv_vsContent = viewStub.inflate();     //inflate 方法只能被调用一次，
+//                    hintText = (TextView) iv_vsContent.findViewById(R.id.tv_vsContent);
+//                    //hintText.setText("没有相关数据，请刷新");
+//                } catch (Exception e) {
+//                    Log.d("TAG","e = " + e.getMessage());
+//                    viewStub.setVisibility(View.VISIBLE);
+//                } finally {
+//                    hintText.setText("没有相关数据，请刷新");
+//                }
+
+                //View.VISIBLE或INVISIBLE如果是首次使用，都会自动inflate其指向的布局文件，
+                // 并替换ViewStub本身，再次使用则是相当于对其指向的布局文件设置可见性。
+                viewStub.setVisibility(View.VISIBLE);
                 break;
             case R.id.btn_vs_hideView:  //如果显示
                 viewStub.setVisibility(View.INVISIBLE);
